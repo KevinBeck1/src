@@ -18,7 +18,7 @@ setmetatable(tests, mt_tests);
 _results = {};
 
 function assert_equals(label, expected, actual)
-    local act = tryCall(actual)() or 9999;
+    local act = tryCall(actual)();
     local result = expected == act;
 
     local reult_string ="----+  " .. label .. " - expected: " .. expected .. " actual: " .. act .. " -- ";
