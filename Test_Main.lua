@@ -18,7 +18,7 @@ setmetatable(tests, mt_tests);
 _results = {};
 
 function assert_equals(label, expected, actual)
-    local act = tryCall(actual)();
+    local act = tryCall(actual)() or 9999;
     local result = expected == act;
 
     local reult_string ="----+  " .. label .. " - expected: " .. expected .. " actual: " .. act .. " -- ";
@@ -35,7 +35,7 @@ end
 function run_test(test)
     tests[test]:setup();
     for i, case in ipairs(tests[test].cases) do
-        trycCall(case.setup)(tests[test]);
+        tryCall(case.setup)(tests[test]);
         tryCall(write_log)(assert_equals(case.label, case.expected, case.actual));
         tryCall(case.teardown)(tests[test]);
     end

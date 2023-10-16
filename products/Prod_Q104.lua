@@ -18,16 +18,17 @@ Prod_Q104 = {
 		tryCall(start_series)(self.sequence);
 	end,
 	finish = function(self)
-			results["ALK"] = ALK_001 (self.wells);
-			results["pH Mid"] = PHB_001 (self.wells,ALK_001);
-			results["pH Low"] = LRPH_001 (self.wells);
-			results["pH High"] = HRPH_001 (self.wells);
+		results["ALK"] = ALK_001 (self.wells);
+		results["pH Mid"] = PHB_001 (self.wells,ALK_001);
+		results["pH Low"] = LRPH_001 (self.wells);
+		results["pH High"] = HRPH_001 (self.wells);
 
-		if Sequence[60] >= self.sequence then
+		if Sequence[60] <= self.sequence then
 			results["Phosphate ppm"] = PHOS_003 (self.wells)
 			results["Hardness"] = LRH_001 (self.wells)
+		end
 
-		elseif Sequence[120] >= self.sequence then
+		if Sequence[120] == self.sequence then
 			results["Nitrate"] = NAT_001 (self.wells,ALK_001);
 			results["Nitrite"] = NIT_001 (self.wells);
 			results["Ammonia"] = SAM_004 (self.wells, ALK_001);

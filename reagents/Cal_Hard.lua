@@ -48,12 +48,16 @@ LRH_003 = function (Wells,IRON,COP)
                 [4] = new_polly({1.6335, 731.91, -486.26, 448.82}),
                 [6] = new_polly({4.7891, 672.49, -202.68, 352.17})
             };
-            if 2 > iron then return weighted_avg(0, 2, iron, absorb, cals)
-            elseif 4 > iron then return weighted_avg(2, 4, iron, absorb, cals)
-            elseif 6 > iron then return weighted_avg(4, 6, iron, absorb, cals)
-            else return cals[6](absorb)
-            end;
-        end
+    if 2 > iron then 
+        return weighted_avg(0, 2, iron, absorb, cals)
+    elseif 4 > iron then 
+        return weighted_avg(2, 4, iron, absorb, cals)
+    elseif 6 > iron then
+        return weighted_avg(4, 6, iron, absorb, cals)
+    else 
+        return cals[6](absorb)
+    end;
+end
 
 HRH_001 = function(Wells)
     local well = Wells.HRH_Well;
@@ -76,16 +80,16 @@ HRH_003 = function (Wells,IRON,COP)
 
     local iron = IRON(Wells);
     local Cu = COP(Wells);
-    local absorb = ((1 + (0.1043 * Cu)) * abs(raw[timing][568][well], raw[timing][568][blank]));
-    local cals = {
-                [0] = new_polly({142.85, 825.08, -423.41, 433.33}),
-                [2] = new_polly({137.11, 923.89, -363.01, 468.68}),
-                [4] = new_polly({135.84, 1017.71, -370.14, 516.2}),
-                [6] = new_polly({120.04, 1263.11, -752.41, 842.09})
-            };
-            if 2 > iron then return weighted_avg(0, 2, iron, absorb, cals)
-            elseif 4 > iron then return weighted_avg(2, 4, iron, absorb, cals)
-            elseif 6 > iron then return weighted_avg(4, 6, iron, absorb, cals)
-            else return cals[6](absorb)
-            end;
-        end
+	local absorb = ((1 + (0.1043 * Cu)) * abs(raw[timing][568][well], raw[timing][568][blank]));
+			local cals = {
+				[0] = new_polly({142.85, 825.08, -423.41, 433.33}),
+				[2] = new_polly({137.11, 923.89, -363.01, 468.68}),
+				[4] = new_polly({135.84, 1017.71, -370.14, 516.2}),
+				[6] = new_polly({120.04, 1263.11, -752.41, 842.09})
+			};
+			if 2 > iron then return weighted_avg(0, 2, iron, absorb, cals)
+			elseif 4 > iron then return weighted_avg(2, 4, iron, absorb, cals)
+			elseif 6 > iron then return weighted_avg(4, 6, iron, absorb, cals)
+			else return cals[6](absorb)
+			end;
+end

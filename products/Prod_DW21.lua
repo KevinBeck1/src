@@ -8,7 +8,7 @@ Prod_DW21 = {
 		LRH_Well = 6,
 		ALK_Well = 7,
 		COPB_Well = 8,
-		HRPH_Well = 9,
+		HRH_Well = 9,
 		NIT_Well = 10,
 		Blank = 11,
 	},
@@ -22,19 +22,20 @@ Prod_DW21 = {
 		results["pH Mid"] = PHB_001 (self.wells,ALK_001);
 		results["pH Low"] = LRPH_001 (self.wells);
 
-		if Sequence[60] >= self.sequence then
+		if Sequence[60] <= self.sequence then
 			results["Total Iron"] = IRONB_001 (self.wells);
 			results["Ferrus Iron"] = IRONB_002 (self.wells);
 			results["Copper"] = COPB_001 (self.wells);
 			results["Hardness LR"] = LRH_003 (self.wells,IRONB_001,COPB_001);
 			results["Hardness HR"] = HRH_003 (self.wells,IRONB_001,COPB_001);
+		end
 
-		elseif Sequence[120] >= self.sequence then
+		if Sequence[120] == self.sequence then
 			results["Nitrate"] = NAT_002 (self.wells,ALK_001);
 			results["Nitrite"] = NIT_001 (self.wells);
 
 		end;
-	end,
+	end
 }
 
 

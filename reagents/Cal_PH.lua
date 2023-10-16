@@ -11,7 +11,7 @@ function ph_avg(absorb, constants, alk)
 end
 
 
-PHB_001 = function (Wells,ALK)
+PHB_001 = function (Wells, ALK)
     local well = Wells.PHB_Well;
     local blank = Wells.Blank;
     local timing = "30";
@@ -31,7 +31,7 @@ PHB_001 = function (Wells,ALK)
     );
 end
 
-PHB_002 = function (Wells,ALK) 
+PHB_002 = function (Wells, ALK) 
     local well = Wells.PHB_Well;
     local blank = Wells.Blank;
     local timing = "30";
@@ -66,35 +66,29 @@ PHB_004 = function (Wells)
     return polly({6.1876, 2.4509, -1.0248, 0.30122},abs(raw[timing][525][well], raw[timing][525][blank])) 
 end
 
-function ph_avg_005(absorb, constants, alk)
-    if alk <= 40 then
-        return constants[40](absorb);
-    elseif alk > 40 and alk <= 150 then
-        return (constants[40](absorb) + constants[150](absorb))/2;
-    elseif alk > 150 and alk <=300 then
-        return (constants[150](absorb) + constants[300](absorb))/2;
-    else
-        return constants[300](absorb);
-    end
-end
 
-PHB_005 = function (Wells,ALK)
+PHB_005 = function (Wells, ALK)
     local well = Wells.PHB_Well;
     local blank = Wells.Blank;
     local timing = "30";
 
-    local abs568 = abs(raw[timing][568][well], raw[timing][568][blank]);
     local alk = ALK(Wells);
+    local cal ={
+        [40]=new_polly({7.6543, 2.1655, 0.2579, 0}), 
+        [150]=new_polly({7.2414, 1.6941, 0.3235, 0.523}), 
+        [300] = new_polly({7.2197, 1.5288, 0.3395, -0.2465})
+    };
 
-    return ph_avg_005(
-        abs568, 
-        {
-            [40] = new_polly{7.6543, 2.1655, 0.2579, 0},
-            [150] = new_polly{7.2414, 1.6941, 0.3235, 0.523},
-            [300]= new_polly{7.2197, 1.5288, 0.3395, -0.2465}
-        },
-        alk
-    );
+    local absorb = (math.log( abs(raw[timing][568][well], raw[timing][568][blank])/ abs(raw[timing][428][well], raw[timing][428][blank]))/ math.log(10));
+        if 40>= alk then
+            return cal[40](absorb);
+        elseif 150>= alk then
+            return weighted_avg(40, 150, alk, absorb, cal);
+        elseif 300 >= alk then
+            return weighted_avg(150, 300, alk, absorb, cal);
+        else
+            return cal[300](absorb);
+    end
 end
 
 HRPH_001 = function(Wells)
@@ -105,7 +99,7 @@ HRPH_001 = function(Wells)
     local abs428 = abs(raw[timing][428][well], raw[timing][428][blank]);
     local abs568 = abs(raw[timing][568][well], raw[timing][568][blank]);
 
-    return polly({8.206300,1.204800, 0.157310, 0.097560}, math.log(abs568/abs428)/math.log(10));
+    return polly({8.206300, 1.204800, 0.157310, 0.097560}, math.log(abs568/abs428)/math.log(10));
 end
 
 HRPH_002 = function(Wells)
@@ -116,7 +110,7 @@ HRPH_002 = function(Wells)
     local abs428 = abs(raw[timing][428][well], raw[timing][428][blank]);
     local abs568 = abs(raw[timing][568][well], raw[timing][568][blank]);
 
-    return polly({7.736,1.056,3.434e-1,1.633e-1}, math.log(abs568/abs428)/math.log(10));
+    return polly({7.736, 1.056, 3.434e-1, 1.633e-1}, math.log(abs568/abs428)/math.log(10));
 end
 
 LRPH_001 = function(Wells)

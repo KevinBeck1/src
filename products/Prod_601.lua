@@ -27,20 +27,30 @@ tryCall(start_series)(self.sequence);
 end,
 
 finish = function(self)
-results["Free Chlorine 1"] = FCL_002 (self.wells[1]);
-results["Bromine 1"] = BR_001 (self.wells[1]);
-results["Alk 1"] = ALK_001 (self.wells[1]);
-results["pH 1"] = PHB_001 (self.wells[1],ALK_001);
-results["pH (Salt) 1"] = PHB_002 (self.wells[1],ALK_001);
-results["Free Chlorine 2"] = FCL_002 (self.wells[2]);
-results["Bromine 2"] = BR_001 (self.wells[2]);
-results["Alk 2"] = ALK_001 (self.wells[2]);
-results["pH 2"] = PHB_001 (self.wells[2],ALK_001);
-results["pH (Salt) 2"] = PHB_002 (self.wells[2],ALK_001);
-results["Free Chlorine 3"] = FCL_002 (self.wells[3]);
-results["Bromine 3"] = BR_001 (self.wells[3]);
-results["Alk 3"] = ALK_001 (self.wells[3]);
-results["pH 3"] = PHB_001 (self.wells[3],ALK_001);
-results["pH (Salt) 3"] = PHB_002 (self.wells[3],ALK_001);
+    results["# nr FCL - 1"] = FCL_002 (self.wells[1]);
+    results["Bromine 1"] = BR_001 (self.wells[1]);
+    results["Alk 1"] = ALK_001 (self.wells[1]);
+    results["pH 1"] = PHB_001 (self.wells[1],ALK_001);
+    results["pH (Salt) 1"] = PHB_002 (self.wells[1],ALK_001);
+    results["Free Chlorine 2"] = FCL_002 (self.wells[2]);
+    results["Bromine 2"] = BR_001 (self.wells[2]);
+    results["Alk 2"] = ALK_001 (self.wells[2]);
+    results["pH 2"] = PHB_001 (self.wells[2],ALK_001);
+    results["pH (Salt) 2"] = PHB_002 (self.wells[2],ALK_001);
+    results["Free Chlorine 3"] = FCL_002 (self.wells[3]);
+    results["Bromine 3"] = BR_001 (self.wells[3]);
+    results["Alk 3"] = ALK_001 (self.wells[3]);
+    results["pH 3"] = PHB_001 (self.wells[3],ALK_001);
+    results["pH (Salt) 3"] = PHB_002 (self.wells[3],ALK_001);
 end,
+}
+
+
+
+series["601 QC 30 sec"] = {
+	tags = { "601", "30 sec", "S1", "OneMoreThing" },
+	wells = Prod_601.wells,
+	sequence = Sequence[30],
+	start = Prod_601.start,
+	finish = Prod_601.finish
 }

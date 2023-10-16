@@ -29,10 +29,10 @@ Prod_304 = {
 			results["Borate"] = BORB_001 (self.wells);
 			results["Copper"] = COP_001 (self.wells);
 			results["CYA"] = CYAD_001 (self.wells);
-			results["LR Hardness"] = LRH_001 (self.wells);
-			results["LR Hardness (Salt)"] = LRH_002 (self.wells);
-			results["HR Hardness"] = HRH_001 (self.wells);
-			results["HR Hardness (Salt)"] = HRH_002 (self.wells);
+			results["Hardness LR"] = LRH_001 (self.wells);
+			results["Hardness LR (Salt)"] = LRH_002 (self.wells);
+			results["Hardness HR"] = HRH_001 (self.wells);
+			results["Hardness HR (Salt)"] = HRH_002 (self.wells);
 			results["Salt"] = SALTB_001(self.wells);
 		end;
 	end,

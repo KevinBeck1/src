@@ -14,8 +14,8 @@ HRMG_001 = function(Wells,ALK,PH,HRPH)
 	local timing = "120";
 
 	local alk = ALK(Wells);
-		if PH(Wells) < 8 then
-			corrpH = PH(Wells)
+		if PH(Wells,ALK) < 8 then
+			corrpH = PH(Wells,ALK)
 		else corrpH = HRPH(Wells)
 	end
 

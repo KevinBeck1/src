@@ -9,8 +9,7 @@ FCL_002 = function (Wells)
     local well = Wells.FCL_Well;
     local blank = Wells.Blank;
     local timing = "30";
-
-    return polly({0.0078638, 3.7568, 0.67645, 0.40245}, abs(raw[timing][525][well], raw[timing][525][blank]))
+    return polly({0.0078638, 3.7568, 0.67645, 0.40245},abs(raw[timing][525][well], raw[timing][525][blank]))
 end
 
 FCLB_001 = function (Wells)

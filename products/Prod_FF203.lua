@@ -18,18 +18,19 @@ Prod_FF203 = {
 		tryCall(start_series)(self.sequence);
 	end,
 	finish = function(self)
-	results["pH"] = PHB_005 (self.wells,SALK_001);
+	results["pH Mid"] = PHB_005 (self.wells, SALK_001);
 	results["pH High"] = HRPH_002 (self.wells);
 
-		if Sequence[60] >= self.sequence then
+		if Sequence[60] <= self.sequence then
 			results["Phosphate ppm"] = PHOS_004 (self.wells);
+		end
 
-		elseif Sequence[120] >= self.sequence then
-			results["Nitrate"] = SNAT_001 (self.wells,SALK_001);
+		if Sequence[120] == self.sequence then
+			results["Nitrate"] = SNAT_001 (self.wells, SALK_001);
 			results["Nitrite"] = NIT_001 (self.wells);
-			results["Ammonia"] = SAM_003 (self.wells,SALK_001);
+			results["Ammonia"] = SAM_003 (self.wells, SALK_001);
 			results["ALK"] = SALK_001 (self.wells);
-			results["Magnesium"] = HRMG_001 (self.wells,SALK_001,PHB_005,HRPH_002);
+			results["Magnesium"] = HRMG_001 (self.wells, SALK_001, PHB_005, HRPH_002);
 			results["Calcium"] = SCAL_001 (self.wells);
 
 		end;

@@ -1,6 +1,6 @@
 SAM_001 = function(Wells,ALK)
 	local well = Wells.SAM_Well;
-	local blank = Wells.Blank_Well;
+	local blank = Wells.Blank;
 	local timing = "120";
 
 	local cal ={
@@ -27,10 +27,10 @@ end
 
 SAM_002 = function(Wells,ALK)
 	local well = Wells.SAM_Well;
-	local blank = Wells.Blank_Well;
+	local blank = Wells.Blank;
+	local alk = ALK(Wells);
 	local timing = "120";
 
-	local alk = ALK(Wells);
 	local absorbance = abs(raw[timing][635][well], raw[timing][635][blank]);
 	local k0 = -0.30305;
 	local k1 = 3.1961;
@@ -42,10 +42,10 @@ end
 
 SAM_003 = function(Wells,ALK)
 	local well = Wells.SAM_Well;
-	local blank = Wells.Blank_Well;
+	local blank = Wells.Blank;
+	local alk = ALK(Wells);
 	local timing = "120";
 
-	local alk = ALK(Wells);
 	local absorbance = abs(raw[timing][635][well], raw[timing][635][blank]);
 	local k0 = -0.36158;
 	local k1 = 3.1769;
@@ -57,16 +57,16 @@ end
 
 SAM_004 = function(Wells,ALK)
 	local well = Wells.SAM_Well;
-	local blank = Wells.Blank_Well;
+	local blank = Wells.Blank;
+	local alk = ALK(Wells);
 	local timing = "120";
 
-	local alk = ALK(Wells);
-	local absorbance = abs(raw[timing][635][well], raw[timing][635][blank])
+	local absorbance = abs(raw[timing][635][well], raw[timing][635][blank]);
 	local k0 = -0.42727;
 	local k1 = 4.1487;
 	local kalk = 9.5005e-05;
 	local kalkabs = 0.0086939;
 
-	return (k0 + (k1 * absorbance) + (kalk * alk) + (kalkabs * alk * absorbance))
 
+	return (k0 + (k1 * absorbance) + (kalk * alk) + (kalkabs * alk * absorbance))
 end
