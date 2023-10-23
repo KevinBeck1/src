@@ -25,11 +25,11 @@ NAT_002 = function(Wells, ALK)
 	local iteforate = (0.29*abs(raw[timing][525][nit_well], raw[timing][525][blank]));
 	local alkforate = polly({1, 0.00677, -0.00003155, 0.00000004887}, alk);
 
-	local abs568 = abs(raw[timing][568][well],raw[timing][568][blank]);
+	local abs525 = abs(raw[timing][525][well],raw[timing][525][blank]);
     local abs635 = abs(raw[timing][635][well],raw[timing][635][blank]);
 
 
-	return polly({-0.4774, 38.732, 19.983}, (abs568 - abs635 - iteforate ) * (alkforate))
+	return polly({-0.4774, 38.732, 19.983}, (abs525 - abs635 - iteforate ) * (alkforate))
 end
 
 SNAT_001 = function(Wells,ALK)
